@@ -2,21 +2,35 @@ const submitButton = document.getElementById('submitBtn');
 const messageContainer = document.getElementById('messageContainer');
 const form = document.getElementById("userDataForm");
 const messageContentDiv = document.getElementById("messageContentDiv");
-let isPasswordSuccess = false;
-console.log(form);
+const mandatoryNote = document.getElementById("mandatoryNote");
+const passwordError = document.getElementById("invalidPasswordError");
+let isPasswordSuccess = true;
+let isMandatoryFulfilled = true;
+let isPasswordMatching = true;
+document.addEventListener('DOMContentLoaded', function() {
 form.addEventListener('submit', function(event) {
-        event.preventDefault(); 
+        event.preventDefault();
+        mandatoryNote.style.display = "none";
+        passwordError.style.display = "none";
+        if(!isMandatoryFulfilled){
+             mandatoryNote.style.display = "block";
+             isMandatoryFulfilled = true;
+          } 
+          if(!isPasswordSuccess){
+              passwordError.style.display = "block";
+              isPasswordSuccess = true;
+          }
         if(validateForm()){
           messageContainer.style.display = 'block';
-          console.log(isPasswordSuccess);
-          if(!isPasswordSuccess){
+          if(!isPasswordMatching){
+            console.log("invalid password");
            messageContentDiv.innerHTML=`<span class="close-message" id="closeMessage">&times;</span>
-           <p id="messageContent">Invalid Password! Try again. <br> Note: Password should be of minimum 8 characters and should match.</p>`;
+           <p id="messageContent">Password not matching! Try again.</p>`;
            const closeMessageButton = document.getElementById('closeMessage');
            closeMessageButton.addEventListener('click', () => {
-            console.log("clicked");
             messageContainer.style.display = 'none';
-        });
+            isPasswordMatching = true;
+           });
           }
           else{
             messageContentDiv.innerHTML=`<p id="messageContent">Registeration Successful</p>`;
@@ -24,6 +38,7 @@ form.addEventListener('submit', function(event) {
            
           }
       }
+})
 })
 function redirectProfilePage(){
     const name = document.getElementById("name").value;
@@ -36,7 +51,6 @@ function redirectProfilePage(){
         token: generateRandomToken(16)
       }
     sessionStorage.setItem("userdata",JSON.stringify(userData));
-    console.log(userData);
     window.location.href="./profile.html";
 }
 
@@ -48,9 +62,15 @@ function validateForm() {
     const  confirmPassword = document.getElementById("confirmPass").value;
 
     if (name === "" || email === "" || password==="" || confirmPassword ==="") {
+        isMandatoryFulfilled = false;
         return false;
     }
-    if(password!==confirmPassword || password.length<8){
+    if(!isValidPassword(password)){
+        isPasswordSuccess = false;
+        return false;
+    }
+    if(password!==confirmPassword){
+        isPasswordMatching = false;
         return true;
     }
     isPasswordSuccess = true;
@@ -72,3 +92,22 @@ function generateRandomToken(length) {
     localStorage.clear();
 });
 // Close the popup message when the close button is clicked
+
+function isValidPassword(password) {
+    // Define regular expressions for each condition
+    const minLengthRegex = /.{8,}/;             // Minimum length of 8 characters
+    const uppercaseRegex = /[A-Z]/;             // At least one uppercase letter
+    const lowercaseRegex = /[a-z]/;             // At least one lowercase letter
+    const digitRegex = /\d/;                    // At least one digit
+    const specialCharRegex = /[!@#$%^&*()_+]/; // At least one special character
+
+    // Check all conditions
+    const hasMinLength = minLengthRegex.test(password);
+    const hasUppercase = uppercaseRegex.test(password);
+    const hasLowercase = lowercaseRegex.test(password);
+    const hasDigit = digitRegex.test(password);
+    const hasSpecialChar = specialCharRegex.test(password);
+
+    // Check if all conditions are met
+    return hasMinLength && hasUppercase && hasLowercase && hasDigit && hasSpecialChar;
+}

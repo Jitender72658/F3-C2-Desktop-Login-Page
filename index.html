@@ -16,21 +16,24 @@
              </div>
              <form id="userDataForm">
                  <label for="name">Your Name</label><br>
-                 <input id="name" type="text" name="name" required><br>
+                 <input id="name" type="text" name="name" ><br>
    
                  <label for="email">Your Email</label><br>
-                 <input id="email" type="email" name="email" required><br>
+                 <input id="email" type="email" name="email" ><br>
    
-                 <label for="password">Password (min 8 character)</label><br>
-                 <input id="password" type="password" name="password" required><br>
+                 <label for="password">Password</label><br>
+                 <input id="password" type="password" name="password" ><br>
    
                  <label for="confirmPass">Confirm Password</label><br>
-                 <input id="confirmPass" type="password" name="confirmPass" required><br>
+                 <input id="confirmPass" type="password" name="confirmPass" ><br>
    
                  <button type="submit" id="submitBtn">CONTINUE</button>
              </form>
              <div>
                 <p id="mandatoryNote">Error: All fields are mandatory!</p>
+             </div>
+             <div>
+                <p id="invalidPasswordError">Invalid Password: should contain a minimum length of 8 characters, at least one uppercase letter, one lowercase letter, one digit, and one special character (e.g., !@#$%^&*()_+).</p>
              </div>
          </div>
          <div class="messageContainer" id="messageContainer">
