@@ -155,13 +155,17 @@ label{
         position: absolute;
         top:350px;
         left: 36vw;
-        width: 75vw;
+        width: 50vw;
         height: fit-content;
         background-color: white;
         padding: 20px;
         border-radius: 5px;
         text-align: center;
     
+    }
+    .contentContainer{
+        padding: 20px;
+        width: 80vw;
     }
     #submitBtn{
         width: 100%;
