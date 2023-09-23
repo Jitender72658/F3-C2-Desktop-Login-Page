@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link href="./style.css" rel="stylesheet">
+</head>
+<body>
+    <header></header>
+    <main>
+         <div class="contentContainer">
+            <div>
+                <p id="welcomeMessage">Welcome back! 👋</p>
+                <p id="signInHeading">Sign up to your account</p>
+             </div>
+             <form id="userDataForm">
+                 <label for="name">Your Name</label><br>
+                 <input id="name" type="text" name="name" required><br>
+   
+                 <label for="email">Your Email</label><br>
+                 <input id="email" type="email" name="email" required><br>
+   
+                 <label for="password">Password (min 8 character)</label><br>
+                 <input id="password" type="password" name="password" required><br>
+   
+                 <label for="confirmPass">Confirm Password</label><br>
+                 <input id="confirmPass" type="password" name="confirmPass" required><br>
+   
+                 <button type="submit" id="submitBtn">CONTINUE</button>
+             </form>
+             <div>
+                <p id="mandatoryNote">Error: All fields are mandatory!</p>
+             </div>
+             <div class="signUpContainer">
+                <p id="createAccountNote">Don’t have an account? <button id="signUpBtn">Sign up</button></p>
+             </div>
+             <div class="messageContainer" id="messageContainer">
+                <div id="message" class="message">
+                    <div class="message-content-div" id="messageContentDiv">
+                        <!-- <span class="close-message" id="closeMessage">&times;</span>
+                        <p id="messageContent">This is a popup message.</p> -->
+                    </div>
+                </div>
+             </div>
+         </div>
+    </main>
+    <script src="./script.js"></script>
+</body>
+</html>
