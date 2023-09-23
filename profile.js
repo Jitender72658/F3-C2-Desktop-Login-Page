@@ -11,7 +11,7 @@ function displayProfilePage(){
     console.log(userData.password);
     nameData.innerText = `Full Name: ${userData.name}`;
     emailData.innerText = `Email: ${userData.email}`;
-    tokenData.innerText =  `Token: ${userData.token};`;
+    tokenData.innerText =  `Token: ${userData.token}`;
     passwordData.innerText = `Password: ${userData.password}`;
 }
 
